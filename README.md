@@ -62,7 +62,7 @@ So instead of adding attributes and functionality the old fashioned way:
 >
   <img
     class="menuIcon"
-    href="bars.png"
+    src="bars.png"
     alt=""
     tabindex="-1"
     aria-hidden="true"
@@ -82,7 +82,7 @@ So instead of adding attributes and functionality the old fashioned way:
 ... You can write it this way instead, by using this package:
 ```html
 <button class="menuBtn">
-  <img class="menuIcon" href="bars.png"> Menu
+  <img class="menuIcon" src="bars.png"> Menu
 </button>
 ```
 ```js

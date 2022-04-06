@@ -64,14 +64,21 @@ addAccessibilityRules({
       screenReaderText: 'Use the left and right arrow keys to focus the top-level items in the menu.',
     },
     
-    '.item' : {
+    '.item:not(:first-of-type)': {
       keyboard: {
-        ArrowRight: ['focusNext'],
-        ArrowLeft: ['focusPrev'],
-        ArrowUp: ['toggleMenu', 'focusMenuBtn'],
+        ArrowUp: ['focusPrev'],
+        ArrowDown: ['focusNext'],
         Escape: ['toggleMenu', 'focusMenuBtn'],
       },
     },
-    
+
+    '.item:first-of-type': {
+      keyboard: {
+        ArrowUp: ['toggleMenu', 'focusMenuBtn'],
+        ArrowDown: ['focusNext'],
+        Escape: ['toggleMenu', 'focusMenuBtn'],
+      },
+    }
+
   },
 })

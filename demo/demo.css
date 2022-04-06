@@ -1,10 +1,86 @@
+
+/* =========== THEME STYLES */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;900&display=swap');
+
+:root {
+
+  /* Colors */
+  --color-site-1: #dce6e9;
+  --color-site-1-c: #5d5d68;
+  --color-site-2: #c8deeb;
+  --color-site-2-c: #3c5868;
+  --color-site-2-1: #7daeca;
+
+  background-color: var(--color-site-1-c);
+  color: var(--color-site-1);
+  font-family: Montserrat, sans-serif;
+  scroll-behavior: smooth;
+
+  /* 62.5% is typically 10px, making 1rem = 10px for easy reference.
+    Keeping the units relative is better for accessibility. */
+  font-size: 62.5%;
+}
+
 body {
-  padding: 40px;
+
+  /* Setting the generic font size back to 20px for legibility */
+  font-size: 2rem;
+}
+
+/* make sure the outermost elements always take up 100% of the vertical space */
+:root,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* =========== MAIN STYLES */
+
+.header {
+  align-items: center;
+  background-color: var(--color-site-2-c);
+  border-bottom: 0.5rem solid;
+  box-sizing: border-box;
+  color: var(--color-site-2);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 2rem;
+  position: fixed;
+  width: 100%;
+}
+
+.title {
+  margin: 0;
+}
+
+.menuBtn {
+  background-color: var(--color-site-2);
+  border: 0 solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  font-size: 1.4rem;
+  grid-template-rows: 4.2rem 1fr;
+  justify-items: center;
+  padding: 1rem;
+  height: 8rem;
+  width: 8rem;
 }
 
 .menuIcon {
-  height: 16px;
-  vertical-align: bottom;
+  height: 5rem;
+}
+
+.navigation {
+  background-color: var(--color-site-2);
+  display: grid;
+  position: absolute;
+  right: 0;
+  top: 100%;
 }
 
 .navigation[aria-hidden="true"] {
@@ -12,6 +88,21 @@ body {
 }
 
 .item {
-  display: inline-block;
-  padding: 10px;
+  display: block;
+  padding: 2rem 4rem;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.item,
+.item:hover,
+.item:active,
+.item:visited {
+  color: var(--color-site-2-c);
+}
+
+.item:focus,
+.item:hover {
+  background-color: var(--color-site-2-c);
+  color: var(--color-site-2);
 }

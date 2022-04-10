@@ -12,7 +12,7 @@ export const ruleUtilities = {
     const selectors = Object.keys(config.rules).sort(compare)
 
     this.applyRulesCallback = mutations => selectors.forEach(selector => {
-    
+
       // don't reapply the rules of this selector if no matching elements were added
       if (mutations) {
         const {addedNodes} = mutations.find(mutation => mutation.addedNodes)
@@ -20,10 +20,10 @@ export const ruleUtilities = {
           .some(node => node instanceof HTMLElement && node.matches(selector))
         if (!anyMatches) return
       }
-      
+
       // validate the given selector
       if (!checkSelectorValidity(selector)) return
-      
+
       // apply the rule to all elements matching the selector
       getRoot().querySelectorAll(selector).forEach(element => {
         const { rules, methods } = config
@@ -60,19 +60,16 @@ export default config => {
   if (rules.constructor !== Object || methods.constructor !== Object)
     throwError('The `rules` and `methods` properties must be objects.')
   
-  // main function to run initially and as a callback
-  ruleUtilities.setApplyRulesCallback(config)
-
   // attach main function as a mutation observer to the root element
-  const MutationObserver = typeof MutationObserver !== 'undefined'
-    ? MutationObserver
-    : class { observe() {} }
-  ruleUtilities.observer = new MutationObserver(ruleUtilities.applyRulesCallback)
-  ruleUtilities.observer.observe(getRoot(), {
-    childList: true,
-    subtree: true,
-  })
-  
+  if (typeof MutationObserver !== 'undefined') {
+    ruleUtilities.setApplyRulesCallback(config)
+    ruleUtilities.observer = new MutationObserver(ruleUtilities.applyRulesCallback)
+    ruleUtilities.observer.observe(getRoot(), {
+      childList: true,
+      subtree: true,
+    })
+  }
+
   // initial run
   ruleUtilities.applyRulesCallback()
 }

@@ -16,7 +16,7 @@ export const observerUtils = {
       })
     })
   },
-  
+
   removeNonInlineAttrs(element) {
     const elementState = getElementState(element)
     const {inlineAttributes} = elementState
@@ -26,7 +26,7 @@ export const observerUtils = {
       element.removeAttribute(name)
     })
   },
-  
+
   updateChildElAttrs(element) {
     element.querySelectorAll('*').forEach(el => {
       const {attributeObserver} = getElementState(el)
@@ -37,10 +37,10 @@ export const observerUtils = {
         setTimeout(() => attributeObserver.observe(el, { attributes: true }), 0)
     })
   },
-  
+
   setAttrChangeCallback(element) {
     this.attrChangeCallback = (mutations, observer) => {
-  
+
       // temporarily stop observing so attribute manipulations can occur safely
       observer.disconnect()
     
@@ -65,17 +65,16 @@ export const observerUtils = {
 export default element => {
 
   // initialize the mutation observer
-  observerUtils.setAttrChangeCallback(element)
-  const MutationObserver = typeof MutationObserver !== 'undefined'
-    ? MutationObserver
-    : class { observe() {} }
-  const observer = new MutationObserver(observerUtils.attrChangeCallback)
-  observer.observe(element, { attributes: true })
+  if (typeof MutationObserver !== 'undefined') {
+    observerUtils.setAttrChangeCallback(element)
+    const observer = new MutationObserver(observerUtils.attrChangeCallback)
+    observer.observe(element, { attributes: true })
 
-  // attach the observer to the element state
-  updateElementState(element, elementState => {
-    elementState.attributeObserver = observer
-    return elementState
-  })
+    // attach the observer to the element state
+    updateElementState(element, elementState => {
+      elementState.attributeObserver = observer
+      return elementState
+    })
+  }
 }
 

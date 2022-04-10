@@ -5,6 +5,8 @@ import addAccessibilityRules from '../esm/addAccessibilityRules.min.mjs'
 
 addAccessibilityRules({
 
+  root: document.querySelector('.header'),
+
   /** Define reusable methods here, which can be linked
     * to events using the rules below.  Helpful utilities
     * for accessibility are available from the first
@@ -21,7 +23,6 @@ addAccessibilityRules({
     focusOff: utils => utils.focus('off'),
     focusMenuBtn: utils => utils.focus('.menuBtn'),
   },
-
 
   /** These rules operate much like CSS.  They can
     * be added or removed by just toggling the selector,

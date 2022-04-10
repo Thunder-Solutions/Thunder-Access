@@ -21,8 +21,8 @@ addAccessibilityRules({
     focusOff: utils => utils.focus('off'),
     focusMenuBtn: utils => utils.focus('.menuBtn'),
   },
-  
-  
+
+
   /** These rules operate much like CSS.  They can
     * be added or removed by just toggling the selector,
     * and they can be overridden by more specific selectors.
@@ -35,7 +35,7 @@ addAccessibilityRules({
     '.menuBtn': {
       aria: {
         expanded: false,
-        owns: 'Nav',
+        owns: 'Menu',
       },
       keyboard: {
         Enter: ['toggleMenu', 'focusNext'],
@@ -46,7 +46,7 @@ addAccessibilityRules({
         click: ['toggleMenu'],
       },
     },
-    
+
     '.menuIcon': {
       aria: {
         hidden: true,
@@ -61,9 +61,9 @@ addAccessibilityRules({
       aria: {
         hidden: true,
       },
-      screenReaderText: 'Use the left and right arrow keys to focus the top-level items in the menu.',
+      screenReaderText: 'Use the up and down arrow keys to focus the top-level items in the menu.',
     },
-    
+
     '.item:not(:first-of-type)': {
       keyboard: {
         ArrowUp: ['focusPrev'],
@@ -78,7 +78,7 @@ addAccessibilityRules({
         ArrowDown: ['focusNext'],
         Escape: ['toggleMenu', 'focusMenuBtn'],
       },
-    }
+    },
 
   },
 })
